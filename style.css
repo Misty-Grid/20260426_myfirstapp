@@ -258,3 +258,23 @@ h1 {
   padding: 24px 0;
   font-size: 0.9rem;
 }
+
+.export-section {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.export-section button {
+  padding: 8px 18px;
+  background: #e2e8f0;
+  color: #2d3748;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.export-section button:hover {
+  background: #cbd5e0;
+}

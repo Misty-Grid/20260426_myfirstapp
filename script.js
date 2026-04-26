@@ -157,11 +157,31 @@ function closeNotification() {
   document.getElementById('notification').classList.add('hidden');
 }
 
+function exportCSV() {
+  if (state.tasks.length === 0) {
+    showNotification('エクスポートするタスクがありません');
+    return;
+  }
+  const header = 'タスク名,時間（分）,状態';
+  const rows = state.tasks.map(t =>
+    `"${t.name.replace(/"/g, '""')}",${t.minutes},${t.completed ? '完了' : '未完了'}`
+  );
+  const csv = '﻿' + [header, ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `timebox_${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 document.getElementById('addTaskBtn').addEventListener('click', addTask);
 document.getElementById('taskName').addEventListener('keydown', e => {
   if (e.key === 'Enter') addTask();
 });
 document.getElementById('startPauseBtn').addEventListener('click', toggleStartPause);
 document.getElementById('stopBtn').addEventListener('click', stopTimer);
+document.getElementById('exportBtn').addEventListener('click', exportCSV);
 
 renderTasks();
