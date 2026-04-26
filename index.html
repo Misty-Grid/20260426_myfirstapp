@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>タイムボクシングアプリ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>⏱ タイムボクシング</h1>
+
+    <div class="add-task">
+      <input type="text" id="taskName" placeholder="タスク名を入力..." />
+      <input type="number" id="taskMinutes" placeholder="分" min="1" max="120" value="25" />
+      <button id="addTaskBtn">追加</button>
+    </div>
+
+    <div id="timerSection" class="timer-section hidden">
+      <div class="timer-task-name" id="currentTaskName"></div>
+      <div class="timer-display" id="timerDisplay">00:00</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="timer-controls">
+        <button id="startPauseBtn">スタート</button>
+        <button id="stopBtn" class="btn-danger">終了</button>
+      </div>
+    </div>
+
+    <div id="taskList" class="task-list"></div>
+  </div>
+
+  <div id="notification" class="notification hidden">
+    <span id="notificationText"></span>
+    <button onclick="closeNotification()">✕</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
